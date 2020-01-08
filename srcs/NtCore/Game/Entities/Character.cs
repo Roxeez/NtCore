@@ -269,6 +269,27 @@ namespace NtCore.Game.Entities
                 Position = position;
             }
         }
+        
+        /// <summary>
+        /// Walk in range of position
+        /// </summary>
+        /// <param name="destination">Destination position</param>
+        /// <param name="range">Range</param>
+        /// <returns></returns>
+        public async Task WalkInRange(Position destination, int range)
+        {
+            int distance = Position.GetDistance(destination);
+            if (distance <= range)
+            {
+                return;
+            }
+
+            double distRatio = (distance - range) / (double)distance;
+            double x = Position.X + distRatio * (destination.X - Position.X);
+            double y = Position.Y + distRatio * (destination.Y - Position.Y);
+
+            await Walk(new Position((short)x, (short)y));
+        }
 
         /// <summary>
         /// Target selected entity
