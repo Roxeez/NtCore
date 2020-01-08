@@ -156,9 +156,9 @@ namespace NtCore.Game.Entities
                 return;
             }
 
-            if (!Position.IsInRange(target.Position, skill.Info.Range + 4))
+            if (!Position.IsInRange(target.Position, skill.Info.Range))
             {
-                return;
+                await WalkInRange(target.Position, skill.Info.Range);
             }
 
             await Client.SendPacket($"u_s {skill.Info.CastId} {(byte)target.EntityType} {target.Id}");
@@ -195,7 +195,7 @@ namespace NtCore.Game.Entities
 
             if (!Position.IsInRange(position, skill.Info.Range))
             {
-                return;
+                await WalkInRange(position, skill.Info.Range);
             }
 
             await Client.SendPacket($"u_as {skill.Info.CastId} {position.X} {position.Y}");
