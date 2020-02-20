@@ -19,26 +19,21 @@ namespace Moonlight.Tests.Factory
     {
         public FactoryTests()
         {
-            var contextFactory = new SqliteContextFactory(new AppConfig
-            {
-                Database = "../../database.db"
-            });
+            IServiceCollection services = new ServiceCollection();
+            
+            services.AddLogger();
+            services.AddPacketDependencies();
+            services.AddDatabaseDependencies(new AppConfig());
+            services.AddFactories();
+            services.AddSingleton<ILanguageService, LanguageService>();
 
-            var itemRepository = new Repository<Item, ItemDto, MoonlightContext>(contextFactory, new MapsterMapper<Item, ItemDto>());
-            var monsterRepository = new Repository<Monster, MonsterDto, MoonlightContext>(contextFactory, new MapsterMapper<Monster, MonsterDto>());
-            var mapRepository = new Repository<Map, MapDto, MoonlightContext>(contextFactory, new MapsterMapper<Map, MapDto>());
-            var translationRepository =
-                new StringRepository<Database.Entities.Translation, TranslationDto, MoonlightContext>(contextFactory, new MapsterMapper<Database.Entities.Translation, TranslationDto>());
+            ServiceProvider provider = services.BuildServiceProvider();
 
-            _languageService = new LanguageService(translationRepository)
-            {
-                Language = Language.EN
-            };
-
-            _itemFactory = new ItemFactory(itemRepository, _languageService);
-            _entityFactory = new EntityFactory(_languageService, monsterRepository, _itemFactory);
-            _mapFactory = new MapFactory(_languageService, mapRepository);
-            _minilandObjectFactory = new MinilandObjectFactory(_itemFactory);
+            _itemFactory = provider.GetService<IItemFactory>();
+            _entityFactory = provider.GetService<IEntityFactory>();
+            _mapFactory = provider.GetService<IMapFactory>();
+            _minilandObjectFactory = provider.GetService<IMinilandObjectFactory>();
+            _languageService = provider.GetService<ILanguageService>();
         }
 
         private readonly IItemFactory _itemFactory;
