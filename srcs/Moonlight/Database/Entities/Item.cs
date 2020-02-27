@@ -21,7 +21,7 @@ namespace Moonlight.Database.Entities
         public BagType BagType { get; set; }
 
         [Required]
-        public short[] Data { get; set; }
+        public string Data { get; set; }
         
         [Key]
         [Required]

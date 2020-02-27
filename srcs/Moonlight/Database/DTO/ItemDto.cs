@@ -10,6 +10,6 @@ namespace Moonlight.Database.Dto
         public int SubType { get; set; }
         public BagType BagType { get; set; }
         public int Id { get; set; }
-        public short[] Data { get; set; }
+        public string Data { get; set; }
     }
 }

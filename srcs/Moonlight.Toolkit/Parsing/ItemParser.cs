@@ -53,7 +53,7 @@ namespace Moonlight.Toolkit.Parsing
                 int inventoryType = indexLine.GetValue<int>(1);
                 int type = indexLine.GetValue<int>(2);
                 int subType = indexLine.GetValue<int>(3);
-                short[] data = dataLine.GetValues().Skip(1).Select(x => Convert.ToInt16(x)).ToArray();
+                string[] data = dataLine.GetValues().Skip(1).ToArray();
 
                 switch (inventoryType)
                 {
@@ -78,7 +78,7 @@ namespace Moonlight.Toolkit.Parsing
                     BagType = (BagType)inventoryType,
                     Type = type,
                     SubType = subType,
-                    Data = data
+                    Data = string.Join("|", data)
                 });
             }
 
