@@ -241,9 +241,9 @@
     <Compile Include="Utility\Conversion\IConversionFactory.cs" />
     <Compile Include="Utility\EntityUtility.cs" />
     <Compile Include="Utility\FastReflection.cs" />
-    <Compile Include="Utility\Reader\FileContent.cs" />
-    <Compile Include="Utility\Reader\FileLine.cs" />
-    <Compile Include="Utility\Reader\FileRegion.cs" />
+    <Compile Include="Utility\Reader\TextContent.cs" />
+    <Compile Include="Utility\Reader\TextLine.cs" />
+    <Compile Include="Utility\Reader\TextRegion.cs" />
     <Compile Include="Utility\Reader\TextReader.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -38,7 +38,7 @@ namespace Moonlight.Toolkit.Parsing
             }
 
             Logger.Info($"Loading map names from {mapDataPath}");
-            FileContent content = TextReader.FromFile(mapDataPath)
+            TextContent content = TextReader.FromFile(mapDataPath)
                 .SkipEmptyLines()
                 .SkipCommentedLines("#")
                 .SkipLines(x => x.StartsWith("DATA"))
@@ -47,7 +47,7 @@ namespace Moonlight.Toolkit.Parsing
                 .GetContent();
 
             var mapNames = new Dictionary<int, string>();
-            foreach (FileLine line in content.Lines)
+            foreach (TextLine line in content.Lines)
             {
                 int firstMapId = line.GetValue<int>(0);
                 int secondMapId = line.GetValue<int>(1);

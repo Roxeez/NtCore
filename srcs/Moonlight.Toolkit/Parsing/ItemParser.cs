@@ -30,23 +30,23 @@ namespace Moonlight.Toolkit.Parsing
             }
 
             Logger.Info($"Loading items from {itemDataPath}");
-            FileContent content = TextReader.FromFile(itemDataPath)
+            TextContent content = TextReader.FromFile(itemDataPath)
                 .SkipEmptyLines()
                 .SkipCommentedLines("#")
                 .TrimLines()
                 .SplitLineContent('\t')
                 .GetContent();
 
-            IEnumerable<FileRegion> regions = content.GetRegions("VNUM");
+            IEnumerable<TextRegion> regions = content.GetRegions("VNUM");
 
             Logger.Info("Creating all items");
             var items = new List<ItemDto>();
-            foreach (FileRegion region in regions)
+            foreach (TextRegion region in regions)
             {
-                FileLine firstLine = region.GetLine(x => x.StartWith("VNUM"));
-                FileLine secondLine = region.GetLine(x => x.StartWith("NAME"));
-                FileLine indexLine = region.GetLine(x => x.StartWith("INDEX"));
-                FileLine dataLine = region.GetLine(x => x.StartWith("DATA"));
+                TextLine firstLine = region.GetLine(x => x.StartWith("VNUM"));
+                TextLine secondLine = region.GetLine(x => x.StartWith("NAME"));
+                TextLine indexLine = region.GetLine(x => x.StartWith("INDEX"));
+                TextLine dataLine = region.GetLine(x => x.StartWith("DATA"));
 
                 int vnum = firstLine.GetValue<int>(1);
                 string name = secondLine.GetValue(1);

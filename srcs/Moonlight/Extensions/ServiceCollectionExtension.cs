@@ -43,7 +43,7 @@ namespace Moonlight.Extensions
             services.AddTransient<IContextFactory<MoonlightContext>, SqliteContextFactory>();
             services.AddTransient(typeof(IMapper<,>), typeof(MapsterMapper<,>));
 
-            services.AddTransient<IStringRepository<TranslationDto>, CachedStringRepository<Database.Entities.Translation, TranslationDto, MoonlightContext>>();
+            services.AddSingleton<IStringRepository<TranslationDto>, CachedStringRepository<Database.Entities.Translation, TranslationDto, MoonlightContext>>();
             services.AddTransient<IRepository<MapDto>, Repository<Map, MapDto, MoonlightContext>>();
             services.AddTransient<IRepository<ItemDto>, Repository<Item, ItemDto, MoonlightContext>>();
             services.AddTransient<IRepository<MonsterDto>, CachedRepository<Monster, MonsterDto, MoonlightContext>>();

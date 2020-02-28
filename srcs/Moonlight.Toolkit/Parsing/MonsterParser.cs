@@ -29,22 +29,22 @@ namespace Moonlight.Toolkit.Parsing
 
             Logger.Info($"Loading monsters from {monsterDataPath}");
 
-            FileContent content = TextReader.FromFile(monsterDataPath)
+            TextContent content = TextReader.FromFile(monsterDataPath)
                 .SkipEmptyLines()
                 .SkipCommentedLines("#")
                 .TrimLines()
                 .SplitLineContent('\t')
                 .GetContent();
 
-            IEnumerable<FileRegion> regions = content.GetRegions("VNUM");
+            IEnumerable<TextRegion> regions = content.GetRegions("VNUM");
 
             Logger.Info("Creating all monsters");
             var monsters = new List<MonsterDto>();
-            foreach (FileRegion region in regions)
+            foreach (TextRegion region in regions)
             {
-                FileLine vnumLine = region.GetLine(x => x.StartWith("VNUM"));
-                FileLine nameLine = region.GetLine(x => x.StartWith("NAME"));
-                FileLine levelLine = region.GetLine(x => x.StartWith("LEVEL"));
+                TextLine vnumLine = region.GetLine(x => x.StartWith("VNUM"));
+                TextLine nameLine = region.GetLine(x => x.StartWith("NAME"));
+                TextLine levelLine = region.GetLine(x => x.StartWith("LEVEL"));
 
                 int vnum = vnumLine.GetValue<int>(1);
                 string name = nameLine.GetValue(1);

@@ -2,12 +2,12 @@
 
 namespace Moonlight.Utility.Reader
 {
-    public class FileLine
+    public class TextLine
     {
         private readonly string[] _content;
         private readonly char _separator;
 
-        public FileLine(string[] content, char separator)
+        public TextLine(string[] content, char separator)
         {
             _content = content;
             _separator = separator;

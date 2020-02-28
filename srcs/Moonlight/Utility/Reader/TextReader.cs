@@ -19,7 +19,7 @@ namespace Moonlight.Utility.Reader
             _skipConditions = new List<Predicate<string>>();
         }
 
-        public static TextReader FromString(string content) => new TextReader(content.Split('\r', '\n'));
+        public static TextReader FromString(string content) => new TextReader(content.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
         public static TextReader FromFile(string path) => new TextReader(File.ReadAllLines(path));
 
         public TextReader SkipEmptyLines() => SkipLines(string.IsNullOrEmpty);
@@ -44,9 +44,9 @@ namespace Moonlight.Utility.Reader
             return this;
         }
 
-        public FileContent GetContent()
+        public TextContent GetContent()
         {
-            var lines = new List<FileLine>();
+            var lines = new List<TextLine>();
             foreach (string line in _content)
             {
                 if (_skipConditions.Any(x => x.Invoke(line)))
@@ -61,10 +61,10 @@ namespace Moonlight.Utility.Reader
                     content = content.Trim();
                 }
 
-                lines.Add(new FileLine(content.Split(_separator), _separator));
+                lines.Add(new TextLine(content.Split(_separator), _separator));
             }
 
-            return new FileContent(lines);
+            return new TextContent(lines);
         }
     }
 }

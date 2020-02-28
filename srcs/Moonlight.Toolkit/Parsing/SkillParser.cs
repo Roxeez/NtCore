@@ -30,24 +30,24 @@ namespace Moonlight.Toolkit.Parsing
 
             Logger.Info($"Loading skills from {skillDataPath}");
 
-            FileContent content = TextReader.FromFile(skillDataPath)
+            TextContent content = TextReader.FromFile(skillDataPath)
                 .SkipEmptyLines()
                 .SkipCommentedLines("#")
                 .TrimLines()
                 .SplitLineContent('\t')
                 .GetContent();
 
-            IEnumerable<FileRegion> regions = content.GetRegions("VNUM");
+            IEnumerable<TextRegion> regions = content.GetRegions("VNUM");
 
             Logger.Info("Creating all skills");
             var skills = new List<SkillDto>();
-            foreach (FileRegion region in regions)
+            foreach (TextRegion region in regions)
             {
-                FileLine vnumLine = region.GetLine(x => x.StartWith("VNUM"));
-                FileLine nameLine = region.GetLine(x => x.StartWith("NAME"));
-                FileLine typeLine = region.GetLine(x => x.StartWith("TYPE"));
-                FileLine dataLine = region.GetLine(x => x.StartWith("DATA"));
-                FileLine targetLine = region.GetLine(x => x.StartWith("TARGET"));
+                TextLine vnumLine = region.GetLine(x => x.StartWith("VNUM"));
+                TextLine nameLine = region.GetLine(x => x.StartWith("NAME"));
+                TextLine typeLine = region.GetLine(x => x.StartWith("TYPE"));
+                TextLine dataLine = region.GetLine(x => x.StartWith("DATA"));
+                TextLine targetLine = region.GetLine(x => x.StartWith("TARGET"));
 
                 skills.Add(new SkillDto
                 {

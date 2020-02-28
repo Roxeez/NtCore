@@ -57,14 +57,14 @@ namespace Moonlight.Toolkit.Parsing
                         continue;
                     }
 
-                    FileContent content = TextReader.FromFile(file)
+                    TextContent content = TextReader.FromFile(file)
                         .SkipCommentedLines("#")
                         .SkipEmptyLines()
                         .TrimLines()
                         .SplitLineContent('\t')
                         .GetContent();
 
-                    foreach (FileLine line in content.Lines)
+                    foreach (TextLine line in content.Lines)
                     {
                         string key = line.GetFirstValue();
                         string value = line.GetLastValue();
