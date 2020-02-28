@@ -44,10 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\DeserializerExtension.cs" />
     <Compile Include="Extensions\NFluentExtension.cs" />
+    <Compile Include="Packet\Deserialization\BattlePacketDeserializationTests.cs" />
+    <Compile Include="Packet\Deserialization\CharacterPacketDeserializationTests.cs" />
+    <Compile Include="Packet\Deserialization\EntityPacketDeserializationTests.cs" />
+    <Compile Include="Packet\Deserialization\InventoryPacketDeserializationTests.cs" />
+    <Compile Include="Packet\Deserialization\MapPacketDeserializationTests.cs" />
     <Compile Include="TextReaderTests.cs" />
     <Compile Include="Packet\PacketReaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\PacketDeserializationHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\srcs\Moonlight\Moonlight.csproj">
@@ -79,7 +86,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Packet\Deserialization" />
     <Folder Include="Packet\Handling" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -23,7 +23,7 @@ namespace Moonlight.Tests.Extensions
             check.Which.Is(value);
         }
 
-        public static void Match<T>(this ICheckLinkWhich<ICheck<IEnumerable<T>>, ICheck<T>> check, Predicate<T> value)
+        public static void WhichMatch<T>(this ICheckLinkWhich<ICheck<IEnumerable<T>>, ICheck<T>> check, Predicate<T> value)
         {
             ExtensibilityHelper.BeginCheck(check.Which)            
                 .OnNegate("The {0} is false, whereas it must not.")

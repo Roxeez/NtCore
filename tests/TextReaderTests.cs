@@ -20,11 +20,11 @@ Skip me";
                 .GetContent();
 
             Check.That(content.Lines).CountIs(5);
-            Check.That(content.Lines).HasElementAt(0).Match(x => x.AsString().Equals("My first line    "));
-            Check.That(content.Lines).HasElementAt(1).Match(x => x.AsString().Equals("# My second line"));
-            Check.That(content.Lines).HasElementAt(2).Match(x => x.AsString().Equals("        My third line"));
-            Check.That(content.Lines).HasElementAt(3).Match(x => x.AsString().Equals("    My fourth line"));
-            Check.That(content.Lines).HasElementAt(4).Match(x => x.AsString().Equals("Skip me"));
+            Check.That(content.Lines).HasElementAt(0).WhichMatch(x => x.AsString().Equals("My first line    "));
+            Check.That(content.Lines).HasElementAt(1).WhichMatch(x => x.AsString().Equals("# My second line"));
+            Check.That(content.Lines).HasElementAt(2).WhichMatch(x => x.AsString().Equals("        My third line"));
+            Check.That(content.Lines).HasElementAt(3).WhichMatch(x => x.AsString().Equals("    My fourth line"));
+            Check.That(content.Lines).HasElementAt(4).WhichMatch(x => x.AsString().Equals("Skip me"));
         }
 
         [Fact]
@@ -35,10 +35,10 @@ Skip me";
                 .GetContent();
 
             Check.That(content.Lines).CountIs(4);
-            Check.That(content.Lines).HasElementAt(0).Match(x => x.AsString().Equals("My first line    "));
-            Check.That(content.Lines).HasElementAt(1).Match(x => x.AsString().Equals("        My third line"));
-            Check.That(content.Lines).HasElementAt(2).Match(x => x.AsString().Equals("    My fourth line"));
-            Check.That(content.Lines).HasElementAt(3).Match(x => x.AsString().Equals("Skip me"));
+            Check.That(content.Lines).HasElementAt(0).WhichMatch(x => x.AsString().Equals("My first line    "));
+            Check.That(content.Lines).HasElementAt(1).WhichMatch(x => x.AsString().Equals("        My third line"));
+            Check.That(content.Lines).HasElementAt(2).WhichMatch(x => x.AsString().Equals("    My fourth line"));
+            Check.That(content.Lines).HasElementAt(3).WhichMatch(x => x.AsString().Equals("Skip me"));
         }
 
         [Fact]
@@ -49,11 +49,11 @@ Skip me";
                 .GetContent();
             
             Check.That(content.Lines).CountIs(5);
-            Check.That(content.Lines).HasElementAt(0).Match(x => x.AsString().Equals("My first line"));
-            Check.That(content.Lines).HasElementAt(1).Match(x => x.AsString().Equals("# My second line"));
-            Check.That(content.Lines).HasElementAt(2).Match(x => x.AsString().Equals("My third line"));
-            Check.That(content.Lines).HasElementAt(3).Match(x => x.AsString().Equals("My fourth line"));
-            Check.That(content.Lines).HasElementAt(4).Match(x => x.AsString().Equals("Skip me"));
+            Check.That(content.Lines).HasElementAt(0).WhichMatch(x => x.AsString().Equals("My first line"));
+            Check.That(content.Lines).HasElementAt(1).WhichMatch(x => x.AsString().Equals("# My second line"));
+            Check.That(content.Lines).HasElementAt(2).WhichMatch(x => x.AsString().Equals("My third line"));
+            Check.That(content.Lines).HasElementAt(3).WhichMatch(x => x.AsString().Equals("My fourth line"));
+            Check.That(content.Lines).HasElementAt(4).WhichMatch(x => x.AsString().Equals("Skip me"));
         }
 
         [Fact]
@@ -64,10 +64,10 @@ Skip me";
                 .GetContent();
             
             Check.That(content.Lines).CountIs(4);
-            Check.That(content.Lines).HasElementAt(0).Match(x => x.AsString().Equals("My first line    "));
-            Check.That(content.Lines).HasElementAt(1).Match(x => x.AsString().Equals("# My second line"));
-            Check.That(content.Lines).HasElementAt(2).Match(x => x.AsString().Equals("        My third line"));
-            Check.That(content.Lines).HasElementAt(3).Match(x => x.AsString().Equals("    My fourth line"));
+            Check.That(content.Lines).HasElementAt(0).WhichMatch(x => x.AsString().Equals("My first line    "));
+            Check.That(content.Lines).HasElementAt(1).WhichMatch(x => x.AsString().Equals("# My second line"));
+            Check.That(content.Lines).HasElementAt(2).WhichMatch(x => x.AsString().Equals("        My third line"));
+            Check.That(content.Lines).HasElementAt(3).WhichMatch(x => x.AsString().Equals("    My fourth line"));
         }
 
         [Fact]
@@ -83,9 +83,9 @@ Skip me";
             
             Check.That(content.Lines).CountIs(3);
             
-            Check.That(content.Lines).HasElementAt(0).Match(x => x.AsString().Equals("My first line"));
-            Check.That(content.Lines).HasElementAt(1).Match(x => x.AsString().Equals("My third line"));
-            Check.That(content.Lines).HasElementAt(2).Match(x => x.AsString().Equals("My fourth line"));
+            Check.That(content.Lines).HasElementAt(0).WhichMatch(x => x.AsString().Equals("My first line"));
+            Check.That(content.Lines).HasElementAt(1).WhichMatch(x => x.AsString().Equals("My third line"));
+            Check.That(content.Lines).HasElementAt(2).WhichMatch(x => x.AsString().Equals("My fourth line"));
 
             foreach (TextLine line in content.Lines)
             {
