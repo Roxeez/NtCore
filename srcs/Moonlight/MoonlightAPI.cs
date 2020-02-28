@@ -24,6 +24,8 @@ namespace Moonlight
         private readonly IPacketHandlerManager _packetHandlerManager;
         private readonly IEventManager _eventManager;
 
+        internal IServiceProvider Services { get; }
+        
         public MoonlightAPI() : this(new AppConfig())
         {
         }
@@ -35,28 +37,28 @@ namespace Moonlight
 
         internal MoonlightAPI(AppConfig config)
         {
-            IServiceCollection services = new ServiceCollection();
+            IServiceCollection serviceCollection = new ServiceCollection();
 
-            services.AddLogger();
-            services.AddPacketDependencies();
-            services.AddDatabaseDependencies(config);
-            services.AddFactories();
+            serviceCollection.AddLogger();
+            serviceCollection.AddPacketDependencies();
+            serviceCollection.AddDatabaseDependencies(config);
+            serviceCollection.AddFactories();
 
-            services.AddSingleton<ILanguageService, LanguageService>();
-            services.AddSingleton<IClientManager, ClientManager>();
-            services.AddSingleton<IPacketHandlerManager, PacketHandlerManager>();
-            services.AddSingleton<IEventManager, EventManager>();
+            serviceCollection.AddSingleton<ILanguageService, LanguageService>();
+            serviceCollection.AddSingleton<IClientManager, ClientManager>();
+            serviceCollection.AddSingleton<IPacketHandlerManager, PacketHandlerManager>();
+            serviceCollection.AddSingleton<IEventManager, EventManager>();
 
-            services.AddImplementingTypes<IPacketHandler>();
+            serviceCollection.AddImplementingTypes<IPacketHandler>();
 
-            IServiceProvider provider = services.BuildServiceProvider();
+            Services = serviceCollection.BuildServiceProvider();
 
-            _clientManager = provider.GetService<IClientManager>();
-            _packetHandlerManager = provider.GetService<IPacketHandlerManager>();
-            _languageService = provider.GetService<ILanguageService>();
-            _eventManager = provider.GetService<IEventManager>();
+            _clientManager = Services.GetService<IClientManager>();
+            _packetHandlerManager = Services.GetService<IPacketHandlerManager>();
+            _languageService = Services.GetService<ILanguageService>();
+            _eventManager = Services.GetService<IEventManager>();
 
-            Logger = provider.GetService<ILogger>();
+            Logger = Services.GetService<ILogger>();
         }
 
         public Language Language
@@ -78,10 +80,5 @@ namespace Moonlight
         {
             Kernel32.AllocConsole();
         }
-
-        /**
-         * Trick to use it in tests to handling mock packet send/recv but hide to classic users
-         */
-        internal IPacketHandlerManager GetPacketHandlerManager() => _packetHandlerManager;
     }
 }

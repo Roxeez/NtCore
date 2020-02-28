@@ -14,7 +14,7 @@ namespace Moonlight.Tests.Packet.Deserialization
 
         public BattlePacketDeserializationTests()
         {
-            _deserializer = PacketDeserializationHelper.CreateDeserializer();
+            _deserializer = TestHelper.CreateDeserializer();
         }
 
         [Fact]
@@ -36,6 +36,8 @@ namespace Moonlight.Tests.Packet.Deserialization
             Check.That(packet.TargetEntityType).Is(EntityType.MONSTER);
             Check.That(packet.TargetEntityId).Is(2080);
             Check.That(packet.SkillVnum).Is(240);
+            Check.That(packet.TargetIsAlive).IsFalse();
+            Check.That(packet.TargetHpPercentage).Is<byte>(0);
             Check.That(packet.Damage).Is(723);
         }
     }

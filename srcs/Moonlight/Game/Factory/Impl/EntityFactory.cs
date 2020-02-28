@@ -51,7 +51,7 @@ namespace Moonlight.Game.Factory.Impl
             return new Npc(id, monsterDto, name);
         }
 
-        public GroundItem CreateDrop(long id, int vnum, int amount)
+        public GroundItem CreateGroundItem(long id, int vnum, int amount)
         {
             Item item = _itemFactory.CreateItem(vnum);
             return new GroundItem(id, item, amount);

@@ -51,10 +51,16 @@
     <Compile Include="Packet\Deserialization\EntityPacketDeserializationTests.cs" />
     <Compile Include="Packet\Deserialization\InventoryPacketDeserializationTests.cs" />
     <Compile Include="Packet\Deserialization\MapPacketDeserializationTests.cs" />
+    <Compile Include="Packet\Handling\BattlePacketHandlingTests.cs" />
+    <Compile Include="Packet\Handling\CharacterPacketHandlingTests.cs" />
+    <Compile Include="Packet\Handling\EntityPacketHandlingTests.cs" />
+    <Compile Include="Packet\Handling\MapPacketHandlingTests.cs" />
+    <Compile Include="Packet\Handling\MinilandPacketHandlingTests.cs" />
+    <Compile Include="Packet\Handling\PacketHandlingTests.cs" />
     <Compile Include="TextReaderTests.cs" />
     <Compile Include="Packet\PacketReaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\PacketDeserializationHelper.cs" />
+    <Compile Include="Utility\TestHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\srcs\Moonlight\Moonlight.csproj">
@@ -84,9 +90,6 @@
     <PackageReference Include="xunit">
       <Version>2.4.1</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Packet\Handling" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

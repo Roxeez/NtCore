@@ -14,7 +14,7 @@ namespace Moonlight.Tests.Packet.Deserialization
 
         public MapPacketDeserializationTests()
         {
-            _deserializer = PacketDeserializationHelper.CreateDeserializer();
+            _deserializer = TestHelper.CreateDeserializer();
         }
         
         [Fact]

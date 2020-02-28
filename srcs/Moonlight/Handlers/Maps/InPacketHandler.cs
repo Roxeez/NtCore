@@ -54,7 +54,7 @@ namespace Moonlight.Handlers.Maps
                     entity = _entityFactory.CreatePlayer(packet.EntityId, packet.Name);
                     break;
                 case EntityType.GROUND_ITEM:
-                    entity = _entityFactory.CreateDrop(packet.EntityId, packet.Vnum, packet.DropSubPacket.Amount);
+                    entity = _entityFactory.CreateGroundItem(packet.EntityId, packet.Vnum, packet.DropSubPacket.Amount);
                     break;
                 default:
                     throw new InvalidOperationException("Undefined entity type");

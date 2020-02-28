@@ -32,14 +32,12 @@ namespace Moonlight.Handlers.Battle
             if (caster is Character character)
             {
                 Skill skill = character.Skills.FirstOrDefault(x => x.Id == packet.SkillVnum);
-                if (skill == null)
+                if (skill != null)
                 {
-                    return;
+                    skill.IsOnCooldown = true;
                 }
-
-                skill.IsOnCooldown = true;
             }
-            
+
             if (target == null || caster == null)
             {
                 return;
