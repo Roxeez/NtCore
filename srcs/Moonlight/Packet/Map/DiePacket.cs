@@ -8,7 +8,7 @@ namespace Moonlight.Packet.Map
     {
         [PacketIndex(0)]
         public EntityType EntityType { get; set; }
-        
+
         [PacketIndex(1)]
         public long EntityId { get; set; }
     }

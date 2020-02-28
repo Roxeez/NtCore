@@ -1,6 +1,4 @@
-﻿using Moonlight.Clients;
-using Moonlight.Core;
-using Moonlight.Database.Dto;
+﻿using Moonlight.Core;
 using Moonlight.Game.Entities;
 using Moonlight.Game.Maps;
 using Moonlight.Tests.Extensions;
@@ -11,6 +9,17 @@ namespace Moonlight.Tests.Packet.Handling
 {
     public class MapPacketHandlingTests : PacketHandlingTests
     {
+        [Fact]
+        public void Get_Packet_Remove_Entity()
+        {
+            GroundItem item = EntityFactory.CreateGroundItem(123456, 1, 1);
+
+            Map map = Character.Map;
+            map.AddEntity(item);
+
+            Client.ReceivePacket("get 9 123456");
+        }
+
         [Fact]
         public void In_Packet_Add_Drop_To_Map()
         {
@@ -92,17 +101,6 @@ namespace Moonlight.Tests.Packet.Handling
             Client.ReceivePacket($"out {player.EntityType} {player.Id}");
 
             Check.That(map.Players).Not.Contains(player);
-        }
-
-        [Fact]
-        public void Get_Packet_Remove_Entity()
-        {
-            GroundItem item = EntityFactory.CreateGroundItem(123456, 1, 1);
-
-            Map map = Character.Map;
-            map.AddEntity(item);
-            
-            Client.ReceivePacket("get 9 123456");
         }
     }
 }

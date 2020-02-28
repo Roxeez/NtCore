@@ -28,7 +28,7 @@ namespace Moonlight.Handlers.Characters
 
                 // TODO : Maybe we can add passive etc...
             }
-            
+
             skills.ForEach(x => client.Character.Skills.Add(x));
         }
     }

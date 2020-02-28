@@ -5,9 +5,9 @@ namespace Moonlight.Core.Collection
 {
     public sealed class ThreadSafeDictionary<K, V> : IDictionary<K, V>
     {
-        private readonly object _lock = new object();
         private readonly IDictionary<K, V> _internalDictionary = new Dictionary<K, V>();
-        
+        private readonly object _lock = new object();
+
         public V this[K key]
         {
             get
@@ -47,7 +47,7 @@ namespace Moonlight.Core.Collection
                 }
             }
         }
-        
+
         public int Count
         {
             get
@@ -140,7 +140,7 @@ namespace Moonlight.Core.Collection
                 return _internalDictionary.GetEnumerator();
             }
         }
-        
+
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

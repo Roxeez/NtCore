@@ -5,8 +5,8 @@ namespace Moonlight.Core.Collection
 {
     public sealed class ThreadSafeHashSet<T> : ISet<T>
     {
+        private readonly HashSet<T> _internalHashSet = new HashSet<T>();
         private readonly object _lock = new object();
-        private readonly HashSet<T> _internalHashSet= new HashSet<T>();
 
         public IEnumerator<T> GetEnumerator()
         {
@@ -114,8 +114,6 @@ namespace Moonlight.Core.Collection
             }
         }
 
-        public bool Add(T item) => ((ISet<T>)this).Add(item);
-
         public void Clear()
         {
             lock (_lock)
@@ -160,5 +158,7 @@ namespace Moonlight.Core.Collection
         }
 
         public bool IsReadOnly => false;
+
+        public bool Add(T item) => ((ISet<T>)this).Add(item);
     }
 }

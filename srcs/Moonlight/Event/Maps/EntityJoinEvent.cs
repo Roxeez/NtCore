@@ -6,10 +6,7 @@ namespace Moonlight.Event.Maps
 {
     public class EntityJoinEvent : IEventNotification
     {
-        public EntityJoinEvent(Client emitter)
-        {
-            Emitter = emitter;
-        }
+        public EntityJoinEvent(Client emitter) => Emitter = emitter;
 
         public Map Map { get; internal set; }
         public Entity Entity { get; internal set; }

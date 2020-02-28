@@ -10,9 +10,9 @@ namespace Moonlight.Handlers.Maps
 {
     internal class CMapPacketHandler : PacketHandler<CMapPacket>
     {
+        private readonly IEventManager _eventManager;
         private readonly ILogger _logger;
         private readonly IMapFactory _mapFactory;
-        private readonly IEventManager _eventManager;
 
         public CMapPacketHandler(ILogger logger, IMapFactory mapFactory, IEventManager eventManager)
         {
@@ -36,9 +36,9 @@ namespace Moonlight.Handlers.Maps
             }
 
             Map source = client.Character.Map;
-            
+
             destination.AddEntity(client.Character);
-            
+
             if (source != null)
             {
                 _eventManager.Emit(new MapChangeEvent(client)

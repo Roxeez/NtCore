@@ -8,7 +8,7 @@ namespace Moonlight.Core.Interop
     public static class User32
     {
         public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
-        
+
         [DllImport("user32.dll")]
         public static extern int PostMessage(IntPtr hWnd, int uMsg, uint wParam, uint lParam);
 
@@ -17,7 +17,7 @@ namespace Moonlight.Core.Interop
 
         [DllImport("user32.dll")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
-        
+
         [DllImport("user32.dll")]
         public static extern bool SetWindowText(IntPtr hWnd, string text);
 
@@ -26,11 +26,13 @@ namespace Moonlight.Core.Interop
 
         [DllImport("user32.dll")]
         public static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
-        
+
         [DllImport("user32.dll", CharSet = CharSet.Unicode)]
         public static extern int GetWindowTextLength(IntPtr hWnd);
+
         [DllImport("user32.dll")]
         public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint processId);
+
         public static IEnumerable<IntPtr> FindWindowsWithTitle(string title)
         {
             var windows = new List<IntPtr>();
@@ -55,7 +57,7 @@ namespace Moonlight.Core.Interop
             {
                 return string.Empty;
             }
-            
+
             var sb = new StringBuilder(size + 1);
             GetWindowText(hWnd, sb, sb.Capacity);
             return sb.ToString();

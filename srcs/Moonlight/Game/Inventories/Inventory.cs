@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Moonlight.Core.Enums;
 using Moonlight.Extensions;
 using Moonlight.Game.Entities;
@@ -9,7 +8,7 @@ namespace Moonlight.Game.Inventories
     public class Inventory
     {
         private readonly Dictionary<BagType, Bag> _bags;
-        
+
         public Inventory(Character character)
         {
             Equipment = new Bag(character, BagType.EQUIPMENT);

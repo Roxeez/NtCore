@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Windows;
 
 namespace Moonlight.Core.Collection
 {
@@ -10,15 +9,19 @@ namespace Moonlight.Core.Collection
     {
         protected ThreadSafeList<T> ThreadSafeInternalList { get; } = new ThreadSafeList<T>();
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public int Count => ThreadSafeInternalList.Count;
+
+        public IEnumerator<T> GetEnumerator() => ThreadSafeInternalList.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
-        public int Count => ThreadSafeInternalList.Count;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         internal void Add(T item)
         {
             ThreadSafeInternalList.Add(item);
-            
+
             MoonlightAPI.Context?.Post(x =>
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -33,7 +36,7 @@ namespace Moonlight.Core.Collection
             {
                 return;
             }
-            
+
             MoonlightAPI.Context?.Post(x =>
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -44,7 +47,7 @@ namespace Moonlight.Core.Collection
         internal void Clear()
         {
             ThreadSafeInternalList.Clear();
-            
+
             MoonlightAPI.Context?.Post(x =>
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -53,9 +56,5 @@ namespace Moonlight.Core.Collection
         }
 
         public bool Contains(T item) => ThreadSafeInternalList.Contains(item);
-
-        public IEnumerator<T> GetEnumerator() => ThreadSafeInternalList.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

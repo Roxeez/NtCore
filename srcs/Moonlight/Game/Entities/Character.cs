@@ -19,11 +19,11 @@ namespace Moonlight.Game.Entities
     public class Character : Player
     {
         private readonly ILogger _logger;
-        
+
         internal Character(ILogger logger, long id, string name, Client client, Miniland miniland) : base(id, name)
         {
             _logger = logger;
-            
+
             Client = client;
             Inventory = new Inventory(this);
             Miniland = miniland;
@@ -95,14 +95,14 @@ namespace Moonlight.Game.Entities
         ///     Current character skills
         /// </summary>
         public InternalObservableHashSet<Skill> Skills { get; }
-        
+
         /// <summary>
-        /// Class containing unsafe code (game exploit) (use it at your own risk)
+        ///     Class containing unsafe code (game exploit) (use it at your own risk)
         /// </summary>
         public Unsafe Unsafe { get; }
 
         internal DateTime LastMovement { get; set; }
-        
+
         public override byte HpPercentage => (byte)(Hp == 0 ? 0 : (double)Hp / MaxHp * 100);
         public override byte MpPercentage => (byte)(Mp == 0 ? 0 : (double)Mp / MaxMp * 100);
 
@@ -122,6 +122,7 @@ namespace Moonlight.Game.Entities
             {
                 local.ManagedMoonlightCore.Walk(position.X, position.Y);
             }
+
             LastMovement = DateTime.Now;
 
             while (LastMovement.AddMilliseconds(500) > DateTime.Now)
@@ -153,7 +154,7 @@ namespace Moonlight.Game.Entities
         }
 
         /// <summary>
-        /// Attack entity with basic attack
+        ///     Attack entity with basic attack
         /// </summary>
         /// <param name="entity">Entity to attack</param>
         public async Task Attack(LivingEntity entity)
@@ -163,7 +164,7 @@ namespace Moonlight.Game.Entities
                 _logger.Info("Attack cancelled : Can't attack yourself");
                 return;
             }
-            
+
             Skill skill = Skills.FirstOrDefault();
             if (skill == null)
             {
@@ -236,12 +237,12 @@ namespace Moonlight.Game.Entities
             {
                 return;
             }
-            
+
             if (skill.TargetType == TargetType.NO_TARGET)
             {
                 return;
             }
-            
+
             await WalkInRange(target.Position, skill.Range).ConfigureAwait(false);
             Client.SendPacket($"u_s {skill.CastId} {(int)target.EntityType} {target.Id}");
             await Task.Delay(skill.CastTime * 200).ConfigureAwait(false);

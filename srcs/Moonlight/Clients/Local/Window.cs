@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Diagnostics;
 using Moonlight.Core.Interop;
 
 namespace Moonlight.Clients.Local
 {
     public class Window
     {
-        public IntPtr Handle { get; }
-
         public Window(IntPtr handle) => Handle = handle;
+        public IntPtr Handle { get; }
 
         public void Rename(string name)
         {

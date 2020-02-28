@@ -6,10 +6,7 @@ namespace Moonlight.Event.Entities
 {
     public class EntityMoveEvent : IEventNotification
     {
-        public EntityMoveEvent(Client emitter)
-        {
-            Emitter = emitter;
-        }
+        public EntityMoveEvent(Client emitter) => Emitter = emitter;
 
         public LivingEntity Entity { get; internal set; }
         public Position From { get; internal set; }

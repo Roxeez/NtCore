@@ -10,9 +10,9 @@ namespace Moonlight.Handlers.Characters
 {
     internal class CInfoPacketHandler : PacketHandler<CInfoPacket>
     {
+        private readonly IEventManager _eventManager;
         private readonly ILogger _logger;
         private readonly IMapFactory _mapFactory;
-        private readonly IEventManager _eventManager;
 
         public CInfoPacketHandler(ILogger logger, IMapFactory mapFactory, IEventManager eventManager)
         {
@@ -30,7 +30,7 @@ namespace Moonlight.Handlers.Characters
                     Class = packet.Class,
                     Gender = packet.Gender
                 };
-                
+
                 _eventManager.Emit(new CharacterInitializeEvent(client)
                 {
                     Character = client.Character

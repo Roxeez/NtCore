@@ -11,22 +11,10 @@ namespace Moonlight.Tests.Packet.Deserialization
 {
     public class CharacterPacketDeserializationTests
     {
+        public CharacterPacketDeserializationTests() => _deserializer = TestHelper.CreateDeserializer();
+
         private readonly IDeserializer _deserializer;
 
-        public CharacterPacketDeserializationTests()
-        {
-            _deserializer = TestHelper.CreateDeserializer();
-        }
-        
-        [Fact]
-        public void CMap_Packet()
-        {
-            CMapPacket packet = _deserializer.Deserialize<CMapPacket>("c_map 1 20001 1");
-
-            Check.That(packet.MapId).IsEqualTo(20001);
-            Check.That(packet.IsBaseMap).IsTrue();
-        }
-        
         [Fact]
         public void At_Packet()
         {
@@ -47,6 +35,15 @@ namespace Moonlight.Tests.Packet.Deserialization
             Check.That(packet.CharacterId).Is(1234567);
             Check.That(packet.Class).Is(ClassType.ARCHER);
             Check.That(packet.Gender).Is(GenderType.MALE);
+        }
+
+        [Fact]
+        public void CMap_Packet()
+        {
+            CMapPacket packet = _deserializer.Deserialize<CMapPacket>("c_map 1 20001 1");
+
+            Check.That(packet.MapId).IsEqualTo(20001);
+            Check.That(packet.IsBaseMap).IsTrue();
         }
 
         [Fact]

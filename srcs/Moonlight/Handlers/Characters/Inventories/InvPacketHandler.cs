@@ -37,11 +37,11 @@ namespace Moonlight.Handlers.Characters.Inventories
                     {
                         return;
                     }
-                
+
                     bag[sub.Slot] = item;
                     continue;
                 }
-                
+
                 existingItem.Amount = sub.RareAmount;
             }
 

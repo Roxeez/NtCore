@@ -5,6 +5,5 @@ namespace Moonlight.Packet.Map
     [PacketHeader("mapclean")]
     internal class MapCleanPacket : Packet
     {
-        
     }
 }

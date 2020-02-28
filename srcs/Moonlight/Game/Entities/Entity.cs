@@ -72,7 +72,7 @@ namespace Moonlight.Game.Entities
         {
             unchecked
             {
-                return Id.GetHashCode() * 397 ^ (int) EntityType;
+                return Id.GetHashCode() * 397 ^ (int)EntityType;
             }
         }
     }

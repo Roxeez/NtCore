@@ -8,9 +8,13 @@ namespace Moonlight.Core.Collection
     public class InternalObservableHashSet<T> : IEnumerable<T>, INotifyPropertyChanged, INotifyCollectionChanged
     {
         protected ThreadSafeHashSet<T> ThreadSafeInternalHashSet { get; } = new ThreadSafeHashSet<T>();
-        
-        public event PropertyChangedEventHandler PropertyChanged;
+
+        public IEnumerator<T> GetEnumerator() => ThreadSafeInternalHashSet.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         public event NotifyCollectionChangedEventHandler CollectionChanged;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         internal void Add(T item)
         {
@@ -20,7 +24,7 @@ namespace Moonlight.Core.Collection
             {
                 return;
             }
-            
+
             MoonlightAPI.Context?.Post(x =>
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -35,7 +39,7 @@ namespace Moonlight.Core.Collection
             {
                 return;
             }
-            
+
             MoonlightAPI.Context?.Post(x =>
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -46,7 +50,7 @@ namespace Moonlight.Core.Collection
         internal void Clear()
         {
             ThreadSafeInternalHashSet.Clear();
-            
+
             MoonlightAPI.Context?.Post(x =>
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -55,9 +59,5 @@ namespace Moonlight.Core.Collection
         }
 
         public bool Contains(T item) => ThreadSafeInternalHashSet.Contains(item);
-        
-        public IEnumerator<T> GetEnumerator() => ThreadSafeInternalHashSet.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

@@ -6,10 +6,7 @@ namespace Moonlight.Event.Maps
 {
     public class MapChangeEvent : IEventNotification
     {
-        public MapChangeEvent(Client emitter)
-        {
-            Emitter = emitter;
-        }
+        public MapChangeEvent(Client emitter) => Emitter = emitter;
 
         public Character Character { get; internal set; }
         public Map Source { get; internal set; }

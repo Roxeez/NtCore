@@ -16,13 +16,13 @@ namespace Moonlight.Handlers.Characters.Inventories
         {
             Character character = client.Character;
             IvnSubPacket ivn = packet.SubPacket;
-            
+
             Bag bag = character.Inventory.GetBag(packet.BagType);
             if (bag == null)
             {
                 return;
             }
-            
+
             if (ivn.VNum == -1)
             {
                 bag.Remove(ivn.Slot);
@@ -37,7 +37,7 @@ namespace Moonlight.Handlers.Characters.Inventories
                 {
                     return;
                 }
-                
+
                 bag[ivn.Slot] = item;
                 return;
             }

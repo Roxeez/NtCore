@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Moonlight.Core.Collection
 {
     public sealed class ThreadSafeList<T> : IList<T>
     {
-        private readonly object _lock = new object();
         private readonly List<T> _internalList = new List<T>();
+        private readonly object _lock = new object();
 
         public T this[int index]
         {
@@ -26,7 +25,7 @@ namespace Moonlight.Core.Collection
                 }
             }
         }
-        
+
         public int Count
         {
             get
@@ -37,12 +36,12 @@ namespace Moonlight.Core.Collection
                 }
             }
         }
-        
+
         public bool IsReadOnly => false;
 
         public void Add(T item)
         {
-            lock(_lock)
+            lock (_lock)
             {
                 _internalList.Add(item);
             }

@@ -10,11 +10,8 @@ namespace Moonlight.Handlers.Maps
     {
         private readonly ILogger _logger;
 
-        public DiePacketHandler(ILogger logger)
-        {
-            _logger = logger;
-        }
-        
+        public DiePacketHandler(ILogger logger) => _logger = logger;
+
         protected override void Handle(Client client, DiePacket packet)
         {
             Map map = client.Character.Map;
@@ -32,7 +29,7 @@ namespace Moonlight.Handlers.Maps
 
             entity.HpPercentage = 0;
             map.RemoveEntity(entity);
-            
+
             _logger.Info($"Entity {entity.EntityType} {entity.Id} died");
         }
     }

@@ -12,7 +12,7 @@ namespace Moonlight.Game.Inventories.Items
         internal Item(string name, ItemDto itemDto)
         {
             _itemDto = itemDto;
-            
+
             Name = name;
             Data = _itemDto.Data?.Split('|').Select(x => Convert.ToInt16(x)).ToArray() ?? Array.Empty<short>();
         }
@@ -24,7 +24,7 @@ namespace Moonlight.Game.Inventories.Items
         public int SubType => _itemDto.SubType;
         public BagType BagType => _itemDto.BagType;
         public short[] Data { get; }
-    
+
         public bool Equals(Item other) => other != null && other.Vnum == Vnum;
     }
 }

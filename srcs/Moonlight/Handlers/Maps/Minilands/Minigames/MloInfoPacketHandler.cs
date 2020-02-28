@@ -25,7 +25,7 @@ namespace Moonlight.Handlers.Maps.Minilands.Minigames
             }
 
             minigame.Scores.Clear();
-            
+
             string[] content = packet.Content.Split(' ').Skip(8).ToArray();
             for (int i = 0; i < content.Length; i += 2)
             {

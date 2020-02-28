@@ -14,7 +14,7 @@ namespace Moonlight.Handlers.Maps
             {
                 return;
             }
-            
+
             map.AddPortal(new Portal(packet.PortalId, new Position(packet.SourceX, packet.SourceY), packet.DestinationId)
             {
                 Type = packet.PortalType

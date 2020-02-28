@@ -6,10 +6,7 @@ namespace Moonlight.Event.Maps
 {
     public class EntityLeaveEvent : IEventNotification
     {
-        public EntityLeaveEvent(Client emitter)
-        {
-            Emitter = emitter;
-        }
+        public EntityLeaveEvent(Client emitter) => Emitter = emitter;
 
         public Map Map { get; internal set; }
         public Entity Entity { get; internal set; }

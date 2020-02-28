@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Mapster;
 using NFluent;
 using NFluent.Extensibility;
 
@@ -25,7 +24,7 @@ namespace Moonlight.Tests.Extensions
 
         public static void WhichMatch<T>(this ICheckLinkWhich<ICheck<IEnumerable<T>>, ICheck<T>> check, Predicate<T> value)
         {
-            ExtensibilityHelper.BeginCheck(check.Which)            
+            ExtensibilityHelper.BeginCheck(check.Which)
                 .OnNegate("The {0} is false, whereas it must not.")
                 .FailWhen(x => !value.Invoke(x), "The {0} is not true")
                 .EndCheck();

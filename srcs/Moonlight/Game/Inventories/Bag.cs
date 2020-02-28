@@ -2,7 +2,6 @@
 using System.Linq;
 using Moonlight.Core.Collection;
 using Moonlight.Core.Enums;
-using Moonlight.Extensions;
 using Moonlight.Game.Entities;
 using Moonlight.Game.Inventories.Items;
 
@@ -11,13 +10,14 @@ namespace Moonlight.Game.Inventories
     public class Bag : InternalObservableDictionary<int, ItemInstance>
     {
         private readonly Character _character;
-        public BagType BagType { get; }
 
         public Bag(Character character, BagType bagType)
         {
             _character = character;
             BagType = bagType;
         }
+
+        public BagType BagType { get; }
 
         public void Move(int sourceSlot, int destinationSlot)
         {
@@ -63,10 +63,10 @@ namespace Moonlight.Game.Inventories
             {
                 return;
             }
-            
+
             Use(entry.Key);
         }
-        
+
         public void Use(int slot)
         {
             if (!ContainsKey(slot))
@@ -76,7 +76,7 @@ namespace Moonlight.Game.Inventories
 
             _character.Client.SendPacket($"u_i {(int)_character.EntityType} {_character.Id} {(int)BagType} {slot} 0 0 ");
         }
-        
+
         public void Drop(int slot, int amount)
         {
             ItemInstance item = GetValueOrDefault(slot);
@@ -97,7 +97,7 @@ namespace Moonlight.Game.Inventories
 
             _character.Client.SendPacket($"put {(int)BagType} {slot} {amount}");
         }
-        
+
         public void Drop(int slot)
         {
             ItemInstance item = GetValueOrDefault(slot);

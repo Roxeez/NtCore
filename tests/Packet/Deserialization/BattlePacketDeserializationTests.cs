@@ -10,12 +10,9 @@ namespace Moonlight.Tests.Packet.Deserialization
 {
     public class BattlePacketDeserializationTests
     {
-        private readonly IDeserializer _deserializer;
+        public BattlePacketDeserializationTests() => _deserializer = TestHelper.CreateDeserializer();
 
-        public BattlePacketDeserializationTests()
-        {
-            _deserializer = TestHelper.CreateDeserializer();
-        }
+        private readonly IDeserializer _deserializer;
 
         [Fact]
         public void Sr_Packet()
@@ -25,7 +22,7 @@ namespace Moonlight.Tests.Packet.Deserialization
             Check.That(packet).IsNotNull();
             Check.That(packet.CastId).IsEqualTo(0);
         }
-        
+
         [Fact]
         public void Su_Packet()
         {

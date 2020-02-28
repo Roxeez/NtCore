@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using Moonlight.Clients.Local;
 using Moonlight.Core.Interop;
 using Moonlight.Handlers;

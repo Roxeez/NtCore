@@ -10,8 +10,8 @@ namespace Moonlight.Handlers.Maps
 {
     internal class OutPacketHandler : PacketHandler<OutPacket>
     {
-        private readonly ILogger _logger;
         private readonly IEventManager _eventManager;
+        private readonly ILogger _logger;
 
         public OutPacketHandler(ILogger logger, IEventManager eventManager)
         {
@@ -38,11 +38,11 @@ namespace Moonlight.Handlers.Maps
 
             map.RemoveEntity(packet.EntityType, packet.EntityId);
             _logger.Info($"Entity {entity.EntityType} {entity.Id} leaved map");
-            
+
             _eventManager.Emit(new EntityLeaveEvent(client)
             {
                 Map = map,
-                Entity = entity,
+                Entity = entity
             });
         }
     }

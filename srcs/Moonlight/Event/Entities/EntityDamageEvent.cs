@@ -6,10 +6,7 @@ namespace Moonlight.Event.Entities
 {
     public class EntityDamageEvent : IEventNotification
     {
-        public EntityDamageEvent(Client emitter)
-        {
-            Emitter = emitter;
-        }
+        public EntityDamageEvent(Client emitter) => Emitter = emitter;
 
         public LivingEntity Entity { get; internal set; }
         public LivingEntity Attacker { get; internal set; }

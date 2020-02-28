@@ -7,7 +7,7 @@ namespace Moonlight.Packet.Map.Miniland.Minigame
     {
         [PacketIndex(0)]
         public byte Type { get; set; }
-        
+
         [PacketIndex(1)]
         public short MinigameId { get; set; }
     }

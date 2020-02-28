@@ -9,11 +9,8 @@ namespace Moonlight.Handlers.Maps
     {
         private readonly IEventManager _eventManager;
 
-        public MapCleanPacketHandler(IEventManager eventManager)
-        {
-            _eventManager = eventManager;
-        }
-        
+        public MapCleanPacketHandler(IEventManager eventManager) => _eventManager = eventManager;
+
         protected override void Handle(Client client, MapCleanPacket packet)
         {
             _eventManager.Emit(new MapCleanEvent(client));

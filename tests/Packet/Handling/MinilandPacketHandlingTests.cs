@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Linq;
-using Moonlight.Core;
+﻿using Moonlight.Core;
 using Moonlight.Game.Maps;
 using Moonlight.Tests.Extensions;
 using NFluent;
@@ -15,7 +13,7 @@ namespace Moonlight.Tests.Packet.Handling
         {
             Miniland miniland = MapFactory.CreateMiniland();
             miniland.AddEntity(Character);
-            
+
             Client.ReceivePacket("mlinfobr 3800 *bliblou* 2 343 10 Cc^tlm");
 
             Check.That(miniland.Owner).Is("*bliblou*");
@@ -26,7 +24,7 @@ namespace Moonlight.Tests.Packet.Handling
         {
             Miniland miniland = MapFactory.CreateMiniland();
             miniland.AddEntity(Character);
-            
+
             Client.ReceivePacket("mltobj 3210.5.17.2 3005.6.31.3 3187.7.7.14");
 
             Check.That(miniland.Objects).CountIs(3);

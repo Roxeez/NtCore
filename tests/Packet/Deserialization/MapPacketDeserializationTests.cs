@@ -10,13 +10,10 @@ namespace Moonlight.Tests.Packet.Deserialization
 {
     public class MapPacketDeserializationTests
     {
+        public MapPacketDeserializationTests() => _deserializer = TestHelper.CreateDeserializer();
+
         private readonly IDeserializer _deserializer;
 
-        public MapPacketDeserializationTests()
-        {
-            _deserializer = TestHelper.CreateDeserializer();
-        }
-        
         [Fact]
         public void Drop_Packet()
         {

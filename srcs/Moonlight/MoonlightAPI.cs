@@ -5,35 +5,29 @@ using Microsoft.Extensions.DependencyInjection;
 using Moonlight.Clients;
 using Moonlight.Core;
 using Moonlight.Core.Interop;
-using Moonlight.Extensions;
 using Moonlight.Core.Logging;
 using Moonlight.Event;
+using Moonlight.Extensions;
 using Moonlight.Handlers;
 using Moonlight.Translation;
 
 [assembly: InternalsVisibleTo("Moonlight.Tests")]
 [assembly: InternalsVisibleTo("Moonlight.Toolkit")]
+
 namespace Moonlight
 {
     public sealed class MoonlightAPI
     {
-        internal static SynchronizationContext Context { get; private set; }
-        
         private readonly IClientManager _clientManager;
+        private readonly IEventManager _eventManager;
         private readonly ILanguageService _languageService;
         private readonly IPacketHandlerManager _packetHandlerManager;
-        private readonly IEventManager _eventManager;
 
-        internal IServiceProvider Services { get; }
-        
         public MoonlightAPI() : this(new AppConfig())
         {
         }
 
-        public MoonlightAPI(SynchronizationContext context) : this()
-        {
-            Context = context;
-        }
+        public MoonlightAPI(SynchronizationContext context) : this() => Context = context;
 
         internal MoonlightAPI(AppConfig config)
         {
@@ -60,6 +54,10 @@ namespace Moonlight
 
             Logger = Services.GetService<ILogger>();
         }
+
+        internal static SynchronizationContext Context { get; private set; }
+
+        internal IServiceProvider Services { get; }
 
         public Language Language
         {

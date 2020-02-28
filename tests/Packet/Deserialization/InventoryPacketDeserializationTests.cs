@@ -10,20 +10,17 @@ namespace Moonlight.Tests.Packet.Deserialization
 {
     public class InventoryPacketDeserializationTests
     {
+        public InventoryPacketDeserializationTests() => _deserializer = TestHelper.CreateDeserializer();
+
         private readonly IDeserializer _deserializer;
 
-        public InventoryPacketDeserializationTests()
-        {
-            _deserializer = TestHelper.CreateDeserializer();
-        }
-        
         [Fact]
         public void Inv_Packet_Costume_Bag()
         {
             InvPacket packet = _deserializer.Deserialize<InvPacket>("inv 7 0.8101.0.72.0 1.8117.0.0.0 2.8192.0.0.0");
 
             Check.That(packet.BagType).Is(BagType.COSTUME);
-            
+
             Check.That(packet.SubPackets).CountIs(3);
             Check.That(packet.SubPackets).HasElementAt(0).WhichMatch(x => x.Slot == 0 && x.VNum == 8101);
             Check.That(packet.SubPackets).HasElementAt(1).WhichMatch(x => x.Slot == 1 && x.VNum == 8117);
@@ -36,7 +33,7 @@ namespace Moonlight.Tests.Packet.Deserialization
             InvPacket packet = _deserializer.Deserialize<InvPacket>("inv 0 0.8112.0.0.0.0 1.8114.0.0.0.0 2.8111.0.0.0.0");
 
             Check.That(packet.BagType).Is(BagType.EQUIPMENT);
-            
+
             Check.That(packet.SubPackets).CountIs(3);
             Check.That(packet.SubPackets).HasElementAt(0).WhichMatch(x => x.Slot == 0 && x.VNum == 8112);
             Check.That(packet.SubPackets).HasElementAt(1).WhichMatch(x => x.Slot == 1 && x.VNum == 8114);
@@ -49,7 +46,7 @@ namespace Moonlight.Tests.Packet.Deserialization
             InvPacket packet = _deserializer.Deserialize<InvPacket>("inv 2 0.2801.9 1.2800.2");
 
             Check.That(packet.BagType).Is(BagType.ETC);
-            
+
             Check.That(packet.SubPackets).CountIs(2);
             Check.That(packet.SubPackets).HasElementAt(0).WhichMatch(x => x.Slot == 0 && x.VNum == 2801 && x.RareAmount == 9);
             Check.That(packet.SubPackets).HasElementAt(1).WhichMatch(x => x.Slot == 1 && x.VNum == 2800 && x.RareAmount == 2);
@@ -61,7 +58,7 @@ namespace Moonlight.Tests.Packet.Deserialization
             InvPacket packet = _deserializer.Deserialize<InvPacket>("inv 1 1.1012.23 3.1027.480 4.1211.17");
 
             Check.That(packet.BagType).Is(BagType.MAIN);
-            
+
             Check.That(packet.SubPackets).CountIs(3);
             Check.That(packet.SubPackets).HasElementAt(0).WhichMatch(x => x.Slot == 1 && x.VNum == 1012 && x.RareAmount == 23);
             Check.That(packet.SubPackets).HasElementAt(1).WhichMatch(x => x.Slot == 3 && x.VNum == 1027 && x.RareAmount == 480);
@@ -74,7 +71,7 @@ namespace Moonlight.Tests.Packet.Deserialization
             InvPacket packet = _deserializer.Deserialize<InvPacket>("inv 3 0.3104.1 1.3157.1");
 
             Check.That(packet.BagType).Is(BagType.MINILAND);
-            
+
             Check.That(packet.SubPackets).CountIs(2);
             Check.That(packet.SubPackets).HasElementAt(0).WhichMatch(x => x.Slot == 0 && x.VNum == 3104 && x.RareAmount == 1);
             Check.That(packet.SubPackets).HasElementAt(1).WhichMatch(x => x.Slot == 1 && x.VNum == 3157 && x.RareAmount == 1);

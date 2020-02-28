@@ -8,11 +8,8 @@ namespace Moonlight.Event
     {
         private readonly Dictionary<Type, List<IEventListener>> _handlers;
 
-        public EventManager()
-        {
-            _handlers = new Dictionary<Type, List<IEventListener>>();
-        }
-        
+        public EventManager() => _handlers = new Dictionary<Type, List<IEventListener>>();
+
         public void Emit<T>(T notification) where T : IEventNotification
         {
             List<IEventListener> handlers = _handlers.GetValueOrDefault(typeof(T));
@@ -20,7 +17,7 @@ namespace Moonlight.Event
             {
                 return;
             }
-            
+
             handlers.ForEach(x => x.Handle(notification));
         }
 
@@ -33,7 +30,7 @@ namespace Moonlight.Event
                 handlers = new List<IEventListener>();
                 _handlers[type] = handlers;
             }
-            
+
             handlers.Add(listener);
         }
     }

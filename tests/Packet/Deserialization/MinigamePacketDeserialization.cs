@@ -9,18 +9,15 @@ namespace Moonlight.Tests.Packet.Deserialization
 {
     public class MinigamePacketDeserialization
     {
-        private readonly IDeserializer _deserializer;
+        public MinigamePacketDeserialization() => _deserializer = TestHelper.CreateDeserializer();
 
-        public MinigamePacketDeserialization()
-        {
-            _deserializer = TestHelper.CreateDeserializer();
-        }
+        private readonly IDeserializer _deserializer;
 
         [Fact]
         public void Mg_Packet()
         {
             MgPacket packet = _deserializer.Deserialize<MgPacket>("mg 1 7");
-            
+
             Check.That(packet.Type).Is<byte>(1);
             Check.That(packet.MinigameId).Is<short>(7);
         }
@@ -39,7 +36,7 @@ namespace Moonlight.Tests.Packet.Deserialization
         public void Mlo_Lv_Packet()
         {
             MloLvPacket packet = _deserializer.Deserialize<MloLvPacket>("mlo_lv 4");
-            
+
             Check.That(packet.Level).Is(4);
         }
 
@@ -56,7 +53,7 @@ namespace Moonlight.Tests.Packet.Deserialization
         public void Mlo_St_Packet()
         {
             MloStPacket packet = _deserializer.Deserialize<MloStPacket>("mlo_st 3");
-            
+
             Check.That(packet.Header).Is("mlo_st");
         }
 

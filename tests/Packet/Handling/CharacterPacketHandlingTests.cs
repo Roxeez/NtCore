@@ -1,7 +1,5 @@
 ﻿using Moonlight.Core;
 using Moonlight.Core.Enums;
-using Moonlight.Database.Dto;
-using Moonlight.Game.Maps;
 using Moonlight.Tests.Extensions;
 using NFluent;
 using Xunit;
@@ -19,7 +17,7 @@ namespace Moonlight.Tests.Packet.Handling
             Check.That(Character.Map.Id).Is(1);
             Check.That(Character.Map.Name).Is("NosVille");
         }
-        
+
         [Fact]
         public void Faction_Packet_Update_Character_Faction()
         {

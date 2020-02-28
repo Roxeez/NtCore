@@ -10,12 +10,9 @@ namespace Moonlight.Tests.Packet.Deserialization
 {
     public class EntityPacketDeserializationTests
     {
-        private readonly IDeserializer _deserializer;
+        public EntityPacketDeserializationTests() => _deserializer = TestHelper.CreateDeserializer();
 
-        public EntityPacketDeserializationTests()
-        {
-            _deserializer = TestHelper.CreateDeserializer();
-        }
+        private readonly IDeserializer _deserializer;
 
         [Fact]
         public void Cond_Packet()

@@ -9,7 +9,7 @@ namespace Moonlight.Database.Dto
         public int Type { get; set; }
         public int SubType { get; set; }
         public BagType BagType { get; set; }
-        public int Id { get; set; }
         public string Data { get; set; }
+        public int Id { get; set; }
     }
 }

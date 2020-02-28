@@ -22,7 +22,7 @@ namespace Moonlight.Database.Entities
 
         [Required]
         public string Data { get; set; }
-        
+
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

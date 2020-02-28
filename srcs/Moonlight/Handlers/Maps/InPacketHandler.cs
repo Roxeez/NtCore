@@ -15,9 +15,9 @@ namespace Moonlight.Handlers.Maps
     internal class InPacketHandler : PacketHandler<InPacket>
     {
         private readonly IEntityFactory _entityFactory;
-        private readonly ILogger _logger;
         private readonly IEventManager _eventManager;
-        
+        private readonly ILogger _logger;
+
         public InPacketHandler(ILogger logger, IEntityFactory entityFactory, IEventManager eventManager)
         {
             _logger = logger;
@@ -94,7 +94,7 @@ namespace Moonlight.Handlers.Maps
 
             map.AddEntity(entity);
             _logger.Info($"Entity {entity.EntityType} {entity.Id} joined map");
-            
+
             _eventManager.Emit(new EntityJoinEvent(client)
             {
                 Map = map,

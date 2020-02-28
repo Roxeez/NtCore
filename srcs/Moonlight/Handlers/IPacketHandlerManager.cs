@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Moonlight.Clients;
-using Moonlight.Extensions;
 using Moonlight.Core.Logging;
+using Moonlight.Extensions;
 using Moonlight.Packet;
 using Moonlight.Packet.Core.Serialization;
 

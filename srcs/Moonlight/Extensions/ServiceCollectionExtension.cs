@@ -28,7 +28,7 @@ namespace Moonlight.Extensions
             services.AddTransient<ISkillFactory, SkillFactory>();
             services.AddTransient<IItemInstanceFactory, ItemInstanceFactory>();
         }
-        
+
         internal static void AddPacketDependencies(this IServiceCollection services)
         {
             services.AddSingleton<IConversionFactory, ConversionFactory>();
@@ -36,7 +36,7 @@ namespace Moonlight.Extensions
             services.AddImplementingTypes<IConverter>();
             services.AddTransient<IDeserializer, Deserializer>();
         }
-        
+
         internal static void AddDatabaseDependencies(this IServiceCollection services, AppConfig config)
         {
             services.AddTransient<AppConfig>(x => config);
@@ -49,7 +49,7 @@ namespace Moonlight.Extensions
             services.AddTransient<IRepository<MonsterDto>, CachedRepository<Monster, MonsterDto, MoonlightContext>>();
             services.AddTransient<IRepository<SkillDto>, Repository<Skill, SkillDto, MoonlightContext>>();
         }
-        
+
         public static void AddImplementingTypes<T>(this IServiceCollection services)
         {
             IEnumerable<Type> types = typeof(T).Assembly.GetAssignableTypes<T>();

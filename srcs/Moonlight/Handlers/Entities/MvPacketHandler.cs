@@ -26,7 +26,7 @@ namespace Moonlight.Handlers.Entities
 
             entity.Position = new Position(packet.PositionX, packet.PositionY);
             entity.Speed = packet.Speed;
-            
+
             _eventManager.Emit(new EntityMoveEvent(client)
             {
                 Entity = entity,

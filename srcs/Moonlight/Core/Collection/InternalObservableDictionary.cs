@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Windows;
 using Moonlight.Extensions;
 using PropertyChanged;
 
@@ -12,9 +11,6 @@ namespace Moonlight.Core.Collection
     public class InternalObservableDictionary<K, V> : IEnumerable<V>, INotifyPropertyChanged, INotifyCollectionChanged
     {
         protected ThreadSafeDictionary<K, V> ThreadSafeInternalDictionary { get; } = new ThreadSafeDictionary<K, V>();
-        
-        public event PropertyChangedEventHandler PropertyChanged;
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         public int Count => ThreadSafeInternalDictionary.Count;
         internal ICollection<V> Values => ThreadSafeInternalDictionary.Values;
@@ -24,8 +20,8 @@ namespace Moonlight.Core.Collection
             get => ThreadSafeInternalDictionary[key];
             set
             {
-                ThreadSafeInternalDictionary[key] = value; 
-                
+                ThreadSafeInternalDictionary[key] = value;
+
                 MoonlightAPI.Context?.Post(x =>
                 {
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -33,11 +29,18 @@ namespace Moonlight.Core.Collection
                 }, null);
             }
         }
-        
+
+        public IEnumerator<V> GetEnumerator() => ThreadSafeInternalDictionary.Values.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         internal void Add(K key, V value)
         {
             ThreadSafeInternalDictionary.Add(key, value);
-            
+
             MoonlightAPI.Context?.Post(x =>
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -63,7 +66,7 @@ namespace Moonlight.Core.Collection
         internal void Clear()
         {
             ThreadSafeInternalDictionary.Clear();
-            
+
             MoonlightAPI.Context?.Post(x =>
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Count"));
@@ -74,9 +77,5 @@ namespace Moonlight.Core.Collection
         internal V GetValueOrDefault(K key) => ThreadSafeInternalDictionary.GetValueOrDefault(key);
 
         public bool ContainsKey(K key) => ThreadSafeInternalDictionary.ContainsKey(key);
-
-        public IEnumerator<V> GetEnumerator() => ThreadSafeInternalDictionary.Values.GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

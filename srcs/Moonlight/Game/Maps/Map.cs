@@ -101,7 +101,7 @@ namespace Moonlight.Game.Maps
             EntityType entityType = EntityUtility.GetEntityType<T>();
             return GetEntities(entityType).Cast<T>();
         }
-        
+
         internal void AddPortal(Portal portal)
         {
             Portals[portal.Id] = portal;
