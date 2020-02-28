@@ -35,6 +35,8 @@ namespace Moonlight.Tests.Packet.Deserialization
         [Fact]
         public void MlObjLstPacket()
         {
+            MlObjLstPacket packet = _deserializer.Deserialize<MlObjLstPacket>("mlobjlst 0.0.0.0.4.2.0.100.0.0 1.0.0.0.0.0.0.100.0.0");
+            
             // TODO : Not implemented yet
         }
 

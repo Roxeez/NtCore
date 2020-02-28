@@ -51,6 +51,7 @@
     <Compile Include="Packet\Deserialization\EntityPacketDeserializationTests.cs" />
     <Compile Include="Packet\Deserialization\InventoryPacketDeserializationTests.cs" />
     <Compile Include="Packet\Deserialization\MapPacketDeserializationTests.cs" />
+    <Compile Include="Packet\Deserialization\MinigamePacketDeserialization.cs" />
     <Compile Include="Packet\Deserialization\MinilandPacketDeserializationTests.cs" />
     <Compile Include="Packet\Handling\BattlePacketHandlingTests.cs" />
     <Compile Include="Packet\Handling\CharacterPacketHandlingTests.cs" />
