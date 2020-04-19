@@ -41,11 +41,13 @@ namespace Moonlight.Handlers.Maps
                 return;
             }
 
-            Entity entity = _entityFactory.CreateGroundItem(packet.VNum, packet.VNum, packet.Amount);
+            Entity entity = _entityFactory.CreateGroundItem(packet.DropId, packet.VNum, packet.Amount);
             entity.Position = new Position(packet.PositionX, packet.PositionY);
 
             if (entity is GroundItem drop)
+            {
                 drop.Owner = map.GetEntity<Player>(packet.OwnerId);
+            }
 
             map.AddEntity(entity);
             _logger.Info($"Entity {entity.EntityType} {entity.Id} joined map");
