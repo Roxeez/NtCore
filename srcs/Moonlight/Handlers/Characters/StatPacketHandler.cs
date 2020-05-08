@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Event;
 using Moonlight.Event.Characters;
 using Moonlight.Game.Entities;
@@ -16,15 +16,18 @@ namespace Moonlight.Handlers.Characters
         {
             Character character = client.Character;
 
-            character.Hp = packet.Hp;
-            character.Mp = packet.Mp;
-            character.MaxHp = packet.MaxHp;
-            character.MaxMp = packet.MaxMp;
-
-            _eventManager.Emit(new StatChangeEvent(client)
+            if (character != null)
             {
-                Character = client.Character
-            });
+                character.Hp = packet.Hp;
+                character.Mp = packet.Mp;
+                character.MaxHp = packet.MaxHp;
+                character.MaxMp = packet.MaxMp;
+
+                _eventManager.Emit(new StatChangeEvent(client)
+                {
+                    Character = client.Character
+                });
+            }
         }
     }
 }

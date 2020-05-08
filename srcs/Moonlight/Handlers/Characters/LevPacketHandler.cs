@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Game.Entities;
 using Moonlight.Packet.Character;
 
@@ -9,9 +9,11 @@ namespace Moonlight.Handlers.Characters
         protected override void Handle(Client client, LevPacket packet)
         {
             Character character = client.Character;
-
-            character.Level = packet.Level;
-            character.JobLevel = packet.JobLevel;
+            if (character != null)
+            {
+                character.Level = packet.Level;
+                character.JobLevel = packet.JobLevel;
+            }
         }
     }
 }

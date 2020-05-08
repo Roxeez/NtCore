@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Core.Logging;
 using Moonlight.Game.Factory;
 using Moonlight.Game.Inventories;
@@ -19,6 +19,12 @@ namespace Moonlight.Handlers.Characters.Inventories
 
         protected override void Handle(Client client, InvPacket packet)
         {
+            if (client.Character == null || client.Character.Inventory == null)
+            {
+                return;
+            }
+
+
             Bag bag = client.Character.Inventory.GetBag(packet.BagType);
 
             if (bag == null)

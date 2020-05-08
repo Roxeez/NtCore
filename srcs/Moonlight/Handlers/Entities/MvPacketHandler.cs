@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Core;
 using Moonlight.Event;
 using Moonlight.Event.Entities;
@@ -15,7 +15,7 @@ namespace Moonlight.Handlers.Entities
 
         protected override void Handle(Client client, MvPacket packet)
         {
-            LivingEntity entity = client.Character.Map.GetEntity<LivingEntity>(packet.EntityType, packet.EntityId);
+            LivingEntity entity = client.Character?.Map?.GetEntity<LivingEntity>(packet.EntityType, packet.EntityId);
 
             if (entity == null)
             {

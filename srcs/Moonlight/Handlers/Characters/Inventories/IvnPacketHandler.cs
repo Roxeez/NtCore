@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Game.Entities;
 using Moonlight.Game.Factory;
 using Moonlight.Game.Inventories;
@@ -14,6 +14,11 @@ namespace Moonlight.Handlers.Characters.Inventories
 
         protected override void Handle(Client client, IvnPacket packet)
         {
+            if (client.Character == null || client.Character.Inventory == null)
+            {
+                return;
+            }
+
             Character character = client.Character;
             IvnSubPacket ivn = packet.SubPacket;
 

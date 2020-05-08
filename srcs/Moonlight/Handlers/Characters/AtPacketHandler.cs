@@ -15,6 +15,11 @@ namespace Moonlight.Handlers.Characters
 
         protected override void Handle(Client client, AtPacket packet)
         {
+            if (client.Character == null)
+            {
+                return;
+            }
+
             Character character = client.Character;
             if (packet.CharacterId != character.Id)
             {

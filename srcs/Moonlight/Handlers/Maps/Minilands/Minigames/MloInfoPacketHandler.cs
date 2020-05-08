@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using Moonlight.Clients;
 using Moonlight.Core;
@@ -16,7 +16,7 @@ namespace Moonlight.Handlers.Maps.Minilands.Minigames
 
         protected override void Handle(Client client, MloInfoPacket packet)
         {
-            var miniland = client.Character.Map as Miniland;
+            var miniland = client?.Character?.Map as Miniland;
 
             var minigame = miniland?.Objects.FirstOrDefault(x => x.Item.Vnum == packet.Vnum && x.Slot == packet.ObjectId) as Minigame;
             if (minigame == null)

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Moonlight.Clients;
 using Moonlight.Core;
 using Moonlight.Game.Entities;
@@ -12,9 +12,12 @@ namespace Moonlight.Handlers.Characters
         {
             Character character = client.Character;
 
-            character.Speed = packet.Speed;
-            character.Position = new Position(packet.PositionX, packet.PositionY);
-            character.LastMovement = DateTime.Now;
+            if (character != null)
+            {
+                character.Speed = packet.Speed;
+                character.Position = new Position(packet.PositionX, packet.PositionY);
+                character.LastMovement = DateTime.Now;
+            }
         }
     }
 }

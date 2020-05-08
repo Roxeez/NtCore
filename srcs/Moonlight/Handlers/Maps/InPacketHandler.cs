@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Moonlight.Clients;
 using Moonlight.Core;
 using Moonlight.Core.Enums;
@@ -27,7 +27,7 @@ namespace Moonlight.Handlers.Maps
 
         protected override void Handle(Client client, InPacket packet)
         {
-            Map map = client.Character.Map;
+            Map map = client.Character?.Map;
 
             if (map == null)
             {

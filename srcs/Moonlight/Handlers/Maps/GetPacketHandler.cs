@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Game.Entities;
 using Moonlight.Game.Maps;
 using Moonlight.Packet.Map;
@@ -9,10 +9,10 @@ namespace Moonlight.Handlers.Maps
     {
         protected override void Handle(Client client, GetPacket packet)
         {
-            Map map = client.Character.Map;
+            Map map = client.Character?.Map;
 
-            LivingEntity entity = map.GetEntity<LivingEntity>(packet.EntityType, packet.EntityId);
-            GroundItem groundItem = map.GetEntity<GroundItem>(packet.DropId);
+            LivingEntity entity = map?.GetEntity<LivingEntity>(packet.EntityType, packet.EntityId);
+            GroundItem groundItem = map?.GetEntity<GroundItem>(packet.DropId);
 
             if (entity == null || groundItem == null)
             {

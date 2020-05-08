@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Game.Entities;
 using Moonlight.Packet.Character;
 
@@ -10,7 +10,10 @@ namespace Moonlight.Handlers.Characters
         {
             Character character = client.Character;
 
-            character.Faction = packet.Faction;
+            if (character != null)
+            {
+                character.Faction = packet.Faction;
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Packet.Map.Miniland.Minigame;
 
 namespace Moonlight.Handlers.Maps.Minilands.Minigames
@@ -7,7 +7,10 @@ namespace Moonlight.Handlers.Maps.Minilands.Minigames
     {
         protected override void Handle(Client client, MlPtPacket packet)
         {
-            client.Character.ProductionPoints = packet.Points;
+            if (client.Character != null)
+            {
+                client.Character.ProductionPoints = packet.Points;
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Moonlight.Clients;
 using Moonlight.Core.Enums;
 using Moonlight.Game.Battle;
@@ -15,6 +15,11 @@ namespace Moonlight.Handlers.Characters
 
         protected override void Handle(Client client, SkiPacket packet)
         {
+            if (client.Character == null)
+            {
+                return;
+            }
+
             client.Character.Skills.Clear();
 
             var skills = new List<Skill>();

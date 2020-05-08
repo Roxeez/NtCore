@@ -9,7 +9,7 @@ namespace Moonlight.Handlers.Entities
     {
         protected override void Handle(Client client, CondPacket packet)
         {
-            Map map = client.Character.Map;
+            Map map = client.Character?.Map;
 
             LivingEntity entity = map?.GetEntity<LivingEntity>(packet.EntityType, packet.EntityId);
             if (entity == null)

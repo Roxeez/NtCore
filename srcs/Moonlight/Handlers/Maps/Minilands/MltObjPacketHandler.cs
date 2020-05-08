@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Moonlight.Clients;
 using Moonlight.Core;
 using Moonlight.Game.Entities;
@@ -18,7 +18,7 @@ namespace Moonlight.Handlers.Maps.Minilands
         {
             Character character = client.Character;
 
-            var miniland = character.Map as Miniland;
+            var miniland = character?.Map as Miniland;
             if (miniland == null)
             {
                 return;

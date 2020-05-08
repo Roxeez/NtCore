@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Game.Entities;
 using Moonlight.Packet.Character;
 
@@ -10,8 +10,11 @@ namespace Moonlight.Handlers.Characters
         {
             Character character = client.Character;
 
-            character.SpPoints = packet.Points;
-            character.AdditionalSpPoints = packet.AdditionalPoints;
+            if (character != null)
+            {
+                character.SpPoints = packet.Points;
+                character.AdditionalSpPoints = packet.AdditionalPoints;
+            }
         }
     }
 }

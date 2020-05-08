@@ -23,6 +23,11 @@ namespace Moonlight.Handlers.Battle
 
         protected override void Handle(Client client, SuPacket packet)
         {
+            if (client.Character == null || client.Character.Map == null)
+            {
+                return;
+            }
+
             Map map = client.Character.Map;
 
             LivingEntity caster = map.GetEntity<LivingEntity>(packet.EntityType, packet.EntityId);
@@ -30,10 +35,13 @@ namespace Moonlight.Handlers.Battle
 
             if (caster is Character character)
             {
-                Skill skill = character.Skills.FirstOrDefault(x => x.Id == packet.SkillVnum);
-                if (skill != null)
+                if (character.Skills != null)
                 {
-                    skill.IsOnCooldown = true;
+                    Skill skill = character.Skills.FirstOrDefault(x => x.Id == packet.SkillVnum);
+                    if (skill != null)
+                    {
+                        skill.IsOnCooldown = true;
+                    }
                 }
             }
 

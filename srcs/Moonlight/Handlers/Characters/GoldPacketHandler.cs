@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Packet.Character;
 
 namespace Moonlight.Handlers.Characters
@@ -7,7 +7,10 @@ namespace Moonlight.Handlers.Characters
     {
         protected override void Handle(Client client, GoldPacket packet)
         {
-            client.Character.Gold = packet.Gold;
+            if (client.Character != null)
+            {
+                client.Character.Gold = packet.Gold;
+            }
         }
     }
 }

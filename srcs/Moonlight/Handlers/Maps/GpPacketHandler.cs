@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Core;
 using Moonlight.Game.Maps;
 using Moonlight.Packet.Map;
@@ -9,13 +9,9 @@ namespace Moonlight.Handlers.Maps
     {
         protected override void Handle(Client client, GpPacket packet)
         {
-            Map map = client.Character.Map;
-            if (map == null)
-            {
-                return;
-            }
+            Map map = client.Character?.Map;
 
-            map.AddPortal(new Portal(packet.PortalId, new Position(packet.SourceX, packet.SourceY), packet.DestinationId)
+            map?.AddPortal(new Portal(packet.PortalId, new Position(packet.SourceX, packet.SourceY), packet.DestinationId)
             {
                 Type = packet.PortalType
             });

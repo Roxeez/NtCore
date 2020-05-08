@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Core.Logging;
 using Moonlight.Game.Maps;
 using Moonlight.Packet.Map.Miniland;
@@ -11,7 +11,7 @@ namespace Moonlight.Handlers.Maps.Minilands
         {
             client.Character.ProductionPoints = packet.Points;
             
-            var miniland = client.Character.Map as Miniland;
+            var miniland = client.Character?.Map as Miniland;
             if (miniland == null)
             {
                 return;

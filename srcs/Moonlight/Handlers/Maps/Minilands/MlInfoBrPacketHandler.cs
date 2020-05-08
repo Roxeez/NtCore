@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Core.Logging;
 using Moonlight.Game.Maps;
 using Moonlight.Packet.Map.Miniland;
@@ -13,7 +13,7 @@ namespace Moonlight.Handlers.Maps.Minilands
 
         protected override void Handle(Client client, MlInfoBrPacket packet)
         {
-            var miniland = client.Character.Map as Miniland;
+            var miniland = client.Character?.Map as Miniland;
             if (miniland == null)
             {
                 _logger.Warn("Receiving packet but current map is not a miniland");

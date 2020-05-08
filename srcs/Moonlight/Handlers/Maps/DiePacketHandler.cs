@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Core.Logging;
 using Moonlight.Game.Entities;
 using Moonlight.Game.Maps;
@@ -14,7 +14,7 @@ namespace Moonlight.Handlers.Maps
 
         protected override void Handle(Client client, DiePacket packet)
         {
-            Map map = client.Character.Map;
+            Map map = client.Character?.Map;
             if (map == null)
             {
                 return;

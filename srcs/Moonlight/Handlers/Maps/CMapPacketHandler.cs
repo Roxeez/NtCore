@@ -1,4 +1,4 @@
-﻿using Moonlight.Clients;
+using Moonlight.Clients;
 using Moonlight.Core.Logging;
 using Moonlight.Event;
 using Moonlight.Event.Maps;
@@ -30,7 +30,7 @@ namespace Moonlight.Handlers.Maps
             }
             
             Map destination = _mapFactory.CreateMap(packet.MapId);
-            if (client.Character.Map?.Id == destination.Id)
+            if (client.Character?.Map?.Id == destination.Id)
             {
                 return;
             }
