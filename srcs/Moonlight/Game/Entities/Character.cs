@@ -9,6 +9,7 @@ using Moonlight.Core.Logging;
 using Moonlight.Game.Battle;
 using Moonlight.Game.Inventories;
 using Moonlight.Game.Maps;
+using Moonlight.Game.Raids;
 
 namespace Moonlight.Game.Entities
 {
@@ -94,6 +95,11 @@ namespace Moonlight.Game.Entities
         ///     Class containing unsafe code (game exploit) (use it at your own risk)
         /// </summary>
         public Unsafe Unsafe { get; }
+
+        /// <summary>
+        ///     Raid the player is currently in
+        /// </summary>
+        public Raid Raid { get; internal set; }
 
         internal DateTime LastMovement { get; set; }
 

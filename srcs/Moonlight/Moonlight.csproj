@@ -98,6 +98,10 @@
     <Compile Include="Event\Maps\EntityLeaveEvent.cs" />
     <Compile Include="Event\Maps\MapChangeEvent.cs" />
     <Compile Include="Event\Maps\MapCleanEvent.cs" />
+    <Compile Include="Event\Raids\RaidBossInitializedEvent.cs" />
+    <Compile Include="Event\Raids\RaidInfoRetrievedEvent.cs" />
+    <Compile Include="Event\Raids\RaidInitializedEvent.cs" />
+    <Compile Include="Event\Raids\RaidStatusChangedEvent.cs" />
     <Compile Include="Extensions\AssemblyExtension.cs" />
     <Compile Include="Extensions\DictionaryExtension.cs" />
     <Compile Include="Extensions\Game\EntityExtension.cs" />
@@ -133,6 +137,8 @@
     <Compile Include="Game\Maps\Miniland.cs" />
     <Compile Include="Game\Maps\MinilandObject.cs" />
     <Compile Include="Game\Maps\Portal.cs" />
+    <Compile Include="Game\Raids\Raid.cs" />
+    <Compile Include="Game\Raids\RaidStatus.cs" />
     <Compile Include="Game\Unsafe.cs" />
     <Compile Include="Handlers\Battle\SrPacketHandler.cs" />
     <Compile Include="Handlers\Battle\SuPacketHandler.cs" />
@@ -164,6 +170,11 @@
     <Compile Include="Handlers\Maps\Minilands\MlObjLstPacketHandler.cs" />
     <Compile Include="Handlers\Maps\Minilands\MltObjPacketHandler.cs" />
     <Compile Include="Handlers\Maps\OutPacketHandler.cs" />
+    <Compile Include="Handlers\Raids\RaidBfPacketHandler.cs" />
+    <Compile Include="Handlers\Raids\RaidBossPacketHandler.cs" />
+    <Compile Include="Handlers\Raids\RaidListPacketHandler.cs" />
+    <Compile Include="Handlers\Raids\RaidMbfPacketHandler.cs" />
+    <Compile Include="Handlers\Raids\RaidPacketHandler.cs" />
     <Compile Include="MoonlightAPI.cs" />
     <Compile Include="Packet\Battle\SrPacket.cs" />
     <Compile Include="Packet\Battle\StPacket.cs" />
@@ -190,6 +201,8 @@
     <Compile Include="Packet\Core\Converters\InvPacketConverter.cs" />
     <Compile Include="Packet\Core\Converters\IvnPacketConverter.cs" />
     <Compile Include="Packet\Core\Converters\PacketConverter.cs" />
+    <Compile Include="Packet\Core\Converters\RaidListPacketConverter.cs" />
+    <Compile Include="Packet\Core\Converters\RaidPacketConverter.cs" />
     <Compile Include="Packet\Core\Converters\SkiPacketConverter.cs" />
     <Compile Include="Packet\Core\Converters\SpecialListConverter.cs" />
     <Compile Include="Packet\Core\IPacketReader.cs" />
@@ -222,6 +235,13 @@
     <Compile Include="Packet\Map\Miniland\MltObjPacket.cs" />
     <Compile Include="Packet\Map\OutPacket.cs" />
     <Compile Include="Packet\Packet.cs" />
+    <Compile Include="Packet\Raid\RaidBfPacket.cs" />
+    <Compile Include="Packet\Raid\RaidBossPacket.cs" />
+    <Compile Include="Packet\Raid\RaidListPacket.cs" />
+    <Compile Include="Packet\Raid\RaidMbfPacket.cs" />
+    <Compile Include="Packet\Raid\RaidPacket.cs" />
+    <Compile Include="Packet\Raid\RaidPacketType.cs" />
+    <Compile Include="Packet\Raid\RaidPlayerData.cs" />
     <Compile Include="Packet\UnknownPacket.cs" />
     <Compile Include="Translation\ILanguageService.cs" />
     <Compile Include="Translation\Language.cs" />
@@ -302,6 +322,7 @@
       <Name>MoonlightCore</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
