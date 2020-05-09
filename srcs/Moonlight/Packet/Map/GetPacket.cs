@@ -1,4 +1,4 @@
-﻿using Moonlight.Core.Enums;
+using Moonlight.Core.Enums;
 using Moonlight.Packet.Core.Attributes;
 
 namespace Moonlight.Packet.Map
@@ -10,9 +10,9 @@ namespace Moonlight.Packet.Map
         public EntityType EntityType { get; set; }
 
         [PacketIndex(1)]
-        public int EntityId { get; set; }
+        public long EntityId { get; set; }
 
         [PacketIndex(2)]
-        public int DropId { get; set; }
+        public long DropId { get; set; }
     }
 }
